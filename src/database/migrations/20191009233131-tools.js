@@ -1,33 +1,28 @@
 module.exports = {
   up: (queryInterface, Sequelize) => {
-    return queryInterface.createTable('files', {
+    return queryInterface.createTable('tools', {
       id: {
         type: Sequelize.INTEGER,
-        allowNull: false,
         autoIncrement: true,
+        allowNull: false,
         primaryKey: true,
       },
-      name: {
+      title: {
         type: Sequelize.STRING,
         allowNull: false,
       },
-      path: {
+      link: {
         type: Sequelize.STRING,
         allowNull: false,
-        unique: true,
       },
-      created_at: {
-        type: Sequelize.DATE,
-        allowNull: false,
-      },
-      updated_at: {
-        type: Sequelize.DATE,
+      description: {
+        type: Sequelize.STRING,
         allowNull: false,
       },
     });
   },
 
   down: queryInterface => {
-    return queryInterface.dropTable('files');
+    return queryInterface.dropTable('tools');
   },
 };
