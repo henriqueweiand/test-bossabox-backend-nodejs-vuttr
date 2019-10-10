@@ -10,29 +10,23 @@ class AppointmentController {
 
     const tools = await Tools.findAll({
       where: { user_id: req.userId, canceled_at: null },
-      attributes: ['id', 'date', 'past', 'cancelable'],
+      attributes: ['id', 'title', 'link', 'description'],
       include: [
         {
           model: Tags,
-          as: 'provider',
+          as: 'ToolsTags',
           attributes: ['name'],
         },
       ],
     });
 
-    return res.json(tools);
+    return res.status(200).json(tools);
   }
 
   async store(req, res) {
-    const { provider_id, date } = req.body;
+    const tools = await CreateTools.run(req.body);
 
-    const tools = await CreateTools.run({
-      provider_id,
-      user_id: req.userId,
-      date,
-    });
-
-    return res.json(tools, 201);
+    return res.status(201).json(tools);
   }
 
   async delete(req, res) {
@@ -40,7 +34,7 @@ class AppointmentController {
       id: req.params.id,
     });
 
-    return res.json(tool, 204);
+    return res.status(204).json(tool);
   }
 }
 

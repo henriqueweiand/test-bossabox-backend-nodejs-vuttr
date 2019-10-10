@@ -21,6 +21,9 @@ module.exports = {
         onUpdate: 'CASCADE',
         onDelete: 'CASCADE',
       },
+      // Timestamps
+      created_at: Sequelize.DATE,
+      updated_at: Sequelize.DATE,
     });
   },
 

@@ -5,7 +5,8 @@ class Tags extends Model {
     super.init(
       {
         name: Sequelize.STRING,
-        path: Sequelize.STRING,
+        created_at: Sequelize.DATE,
+        updated_at: Sequelize.DATE,
       },
       {
         sequelize,
