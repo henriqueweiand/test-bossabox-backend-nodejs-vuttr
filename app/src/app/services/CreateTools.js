@@ -11,22 +11,28 @@ class CreateTools {
 
     if (tags) {
       tags.map(async tag => {
-        const currentTag = await Tags.findOne({ where: { name: tag } });
-        let associate = false;
-
-        if (!currentTag) {
-          associate = await Tags.create({
-            name: tag,
-          });
-        } else {
-          associate = currentTag;
-        }
+        const [associate] = await Tags.findOrCreate({
+          where: { name: tag },
+        });
 
         await tool.setTags(associate);
       });
     }
 
-    return tool;
+    const response = await Tools.findOne({
+      include: [
+        {
+          model: Tags,
+          as: 'tags',
+          required: false,
+          attributes: ['name'],
+          through: { attributes: [] },
+        },
+      ],
+      where: { id: tool.id },
+    });
+
+    return response;
   }
 }
 
