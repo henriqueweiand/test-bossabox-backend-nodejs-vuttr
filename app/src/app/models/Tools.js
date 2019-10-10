@@ -1,14 +1,17 @@
 import Sequelize, { Model } from 'sequelize';
 
-const PROTECTED_ATTRIBUTES = ['created_at', 'updated_at'];
+const PROTECTED_ATTRIBUTES = [
+  'created_at',
+  'createdAt',
+  'updated_at',
+  'updatedAt',
+];
 
 class Tools extends Model {
   toJSON() {
     // hide protected fields
     const attributes = Object.assign({}, this.get());
-    for (const a of PROTECTED_ATTRIBUTES) {
-      delete attributes[a];
-    }
+    PROTECTED_ATTRIBUTES.map(attribute => delete attributes[attribute]);
     return attributes;
   }
 
@@ -23,6 +26,7 @@ class Tools extends Model {
       },
       {
         sequelize,
+        underscored: true,
       }
     );
 
@@ -32,8 +36,7 @@ class Tools extends Model {
   static associate(models) {
     this.belongsToMany(models.Tags, {
       through: 'tools_tags',
-      'foreign-key': 'tools_id',
-      as: 'ToolsTags',
+      as: 'tags',
     });
   }
 }

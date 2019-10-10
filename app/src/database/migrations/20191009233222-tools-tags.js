@@ -7,14 +7,14 @@ module.exports = {
         allowNull: false,
         primaryKey: true,
       },
-      tools_id: {
+      tool_id: {
         type: Sequelize.INTEGER,
         allowNull: false,
         references: { model: 'tools', key: 'id' },
         onUpdate: 'CASCADE',
         onDelete: 'CASCADE',
       },
-      tags_id: {
+      tag_id: {
         type: Sequelize.INTEGER,
         allowNull: false,
         references: { model: 'tags', key: 'id' },

@@ -6,18 +6,20 @@ import DeleteTools from '../services/DeleteTools';
 
 class AppointmentController {
   async index(req, res) {
-    const { tag } = req.query;
+    const { tags } = req.query;
 
     const tools = await Tools.findAll({
-      where: { user_id: req.userId, canceled_at: null },
-      attributes: ['id', 'title', 'link', 'description'],
       include: [
         {
           model: Tags,
-          as: 'ToolsTags',
+          as: 'tags',
+          required: false,
           attributes: ['name'],
+          through: { attributes: [] },
+          // raw: true,
         },
       ],
+      // where: { tag },
     });
 
     return res.status(200).json(tools);

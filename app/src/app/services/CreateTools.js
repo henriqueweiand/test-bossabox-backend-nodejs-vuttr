@@ -12,14 +12,17 @@ class CreateTools {
     if (tags) {
       tags.map(async tag => {
         const currentTag = await Tags.findOne({ where: { name: tag } });
+        let associate = false;
 
         if (!currentTag) {
-          const associate = await Tags.create({
+          associate = await Tags.create({
             name: tag,
           });
+        } else {
+          associate = currentTag;
         }
 
-        console.log('associa', associate);
+        await tool.setTags(associate);
       });
     }
 

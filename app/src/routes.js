@@ -6,7 +6,7 @@ import validateToolsStore from './app/validators/ToolsStore';
 const routes = new Router();
 
 routes.get('/tools', ToolsController.index);
-routes.post('/tools', ToolsController.store);
-routes.delete('/tools/:id', validateToolsStore, ToolsController.delete);
+routes.post('/tools', validateToolsStore, ToolsController.store);
+routes.delete('/tools/:id', ToolsController.delete);
 
 export default routes;
