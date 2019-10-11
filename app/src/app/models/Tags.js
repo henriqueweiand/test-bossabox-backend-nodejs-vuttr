@@ -19,16 +19,22 @@ class Tags extends Model {
     super.init(
       {
         name: Sequelize.STRING,
-        created_at: Sequelize.DATE,
-        updated_at: Sequelize.DATE,
       },
       {
         sequelize,
         underscored: true,
+        timestamps: false,
       }
     );
 
     return this;
+  }
+
+  static associate(models) {
+    this.belongsToMany(models.Tools, {
+      through: 'tools_tags',
+      as: 'tools',
+    });
   }
 }
 

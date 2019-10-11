@@ -1,3 +1,5 @@
+import _ from 'lodash';
+
 import Tools from '../models/Tools';
 import Tags from '../models/Tags';
 
@@ -13,16 +15,21 @@ class AppointmentController {
         {
           model: Tags,
           as: 'tags',
-          required: false,
-          attributes: ['name'],
-          through: { attributes: [] },
-          // raw: true,
+          where: {
+            name: { $col: tags },
+          },
         },
       ],
-      // where: { tag },
     });
 
-    return res.status(200).json(tools);
+    const result = tools.map(tool => {
+      const toolData = tool.toJSON();
+      toolData.tags = toolData.tags.map(tag => tag.name);
+
+      return toolData;
+    });
+
+    return res.status(200).json(result);
   }
 
   async store(req, res) {

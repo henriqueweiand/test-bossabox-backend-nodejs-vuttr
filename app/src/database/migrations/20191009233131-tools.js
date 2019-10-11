@@ -19,9 +19,6 @@ module.exports = {
         type: Sequelize.STRING,
         allowNull: false,
       },
-      // Timestamps
-      created_at: Sequelize.DATE,
-      updated_at: Sequelize.DATE,
     });
   },
 

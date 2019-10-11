@@ -21,12 +21,11 @@ class Tools extends Model {
         title: Sequelize.STRING,
         link: Sequelize.STRING,
         description: Sequelize.STRING,
-        created_at: Sequelize.DATE,
-        updated_at: Sequelize.DATE,
       },
       {
         sequelize,
         underscored: true,
+        timestamps: false,
       }
     );
 

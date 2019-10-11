@@ -1,37 +1,25 @@
-mongo:
-  image: mongo:3.0.4
-  ports:
-    - "27017:27017"
-  volumes:
-    - "./data:/data/db"
-application:
-  build: images/node
-  
-  links:
-    - mongo
-
 version: "3.3"
 
 services:
-  db:
-    container_name: postgres
-    image: postgres
-    restart: always
-    ports:
-      - "5432:5432"
-    environment:
-      POSTGRES_USER: root
-      POSTGRES_PASSWORD: root
-      POSTGRES_DB: nodejs
   # db:
-  #   container_name: mysql
-  #   image: mysql:5.7
+  #   container_name: postgres
+  #   image: postgres
   #   restart: always
   #   ports:
-  #     - "3306:3306"
+  #     - "5432:5432"
   #   environment:
-  #     MYSQL_ROOT_PASSWORD: root
-  #     MYSQL_DATABASE: nodejs
+  #     POSTGRES_USER: root
+  #     POSTGRES_PASSWORD: root
+  #     POSTGRES_DB: nodejs
+  db:
+    container_name: mysql
+    image: mysql:5.7
+    restart: always
+    ports:
+      - "3306:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: nodejs
 
   node:
     container_name: node
