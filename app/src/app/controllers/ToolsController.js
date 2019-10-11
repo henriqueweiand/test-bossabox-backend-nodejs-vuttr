@@ -15,8 +15,9 @@ class ToolsController {
         {
           model: Tags,
           as: 'tags',
+          required: true,
           where: {
-            name: { $col: tags },
+            name: tags,
           },
         },
       ],
