@@ -6,7 +6,7 @@ import Tags from '../models/Tags';
 import CreateTools from '../services/CreateTools';
 import DeleteTools from '../services/DeleteTools';
 
-class AppointmentController {
+class ToolsController {
   async index(req, res) {
     const { tags } = req.query;
 
@@ -47,4 +47,4 @@ class AppointmentController {
   }
 }
 
-export default new AppointmentController();
+export default new ToolsController();
