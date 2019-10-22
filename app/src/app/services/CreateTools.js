@@ -18,7 +18,7 @@ class CreateTools {
           where: { name: tag },
         });
 
-        await tool.setTags(associate);
+        await tool.addTags(associate);
         await associateTags.push(tag);
       }
     }

@@ -11,16 +11,13 @@ class ToolsController {
     const { tags } = req.query;
 
     const tools = await Tools.findAll({
-      include: [
-        {
-          model: Tags,
-          as: 'tags',
-          required: true,
-          where: {
-            name: tags,
-          },
+      include: {
+        association: 'tags',
+        attributes: ['name'],
+        through: {
+          attributes: [],
         },
-      ],
+      },
     });
 
     const result = tools.map(tool => {

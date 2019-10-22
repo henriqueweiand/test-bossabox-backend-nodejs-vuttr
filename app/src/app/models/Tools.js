@@ -26,6 +26,7 @@ class Tools extends Model {
         sequelize,
         underscored: true,
         timestamps: false,
+        tableName: 'tools',
       }
     );
 

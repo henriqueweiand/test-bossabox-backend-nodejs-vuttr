@@ -24,6 +24,7 @@ class Tags extends Model {
         sequelize,
         underscored: true,
         timestamps: false,
+        tableName: 'tags',
       }
     );
 

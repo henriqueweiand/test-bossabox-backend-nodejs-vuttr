@@ -1,4 +1,8 @@
-require('../bootstrap');
+/* eslint-disable import/no-dynamic-require */
+// require('dotenv/config');
+const path = require('path');
+
+require(path.resolve(__dirname, '..', 'bootstrap.js'));
 
 module.exports = {
   dialect: process.env.DB_DIALECT,
